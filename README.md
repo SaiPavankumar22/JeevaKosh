@@ -94,7 +94,7 @@ flowchart TB
 |-------|------------|
 | **Database** | MongoDB |
 | **Backend** | TBD |
-| **Frontend** | TBD |
+| **Frontend** | React + Vite (medintel UI) |
 | **File storage** | TBD (e.g. S3-compatible object storage) |
 | **Authentication** | TBD (e.g. JWT, OAuth 2.0) |
 
@@ -128,9 +128,8 @@ JeevaKosha/
 git clone https://github.com/your-org/jeevakosha.git
 cd jeevakosha
 
-# Install dependencies (adjust paths when modules exist)
-# cd backend && npm install
-# cd ../frontend && npm install
+# Install frontend dependencies
+cd frontend && npm install
 
 # Copy environment template and configure
 # cp .env.example .env
@@ -159,11 +158,11 @@ ENCRYPTION_KEY=your-encryption-key
 # Start MongoDB (if not already running)
 # mongod
 
-# Start backend
-# cd backend && npm run dev
+# Start backend (from project root)
+python -m uvicorn backend.main:app --reload --port 8000
 
 # Start frontend
-# cd frontend && npm run dev
+cd frontend && npm run dev
 ```
 
 ---
