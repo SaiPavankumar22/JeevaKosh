@@ -31,15 +31,10 @@ export default function Hospitals(props) {
   return (
     <React.Fragment>
       <PageHead
-        eyebrow="Care network"
-        title="Your hospitals"
+        title="Your hospitals Reports"
         desc="Manage hospital folders for prescriptions, reports, and OCR extraction."
         icon={Hospital}
-        action={
-          <Button variant="ghost" icon={Home} onClick={() => props.navigate("dashboard")}>
-            Back home
-          </Button>
-        }
+       
       />
 
       <div className="panel" style={{ marginBottom: "1rem" }}>

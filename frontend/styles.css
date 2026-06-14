@@ -2421,7 +2421,48 @@ textarea {
   font-size: 0.9rem;
   color: var(--muted);
 }
+/* ChatGPT Style Chat */
 
+.chat-message {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.assistant {
+  justify-content: flex-start;
+}
+
+.chat-bubble {
+  max-width: 75%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  word-wrap: break-word;
+}
+
+.chat-message.user .chat-bubble {
+  background: #2563eb;
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.chat-message.assistant .chat-bubble {
+  background: white;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 6px;
+}
+
+.chat-message .badge {
+  margin-bottom: 8px;
+}
+.chat-container {
+  padding: 20px;
+}
 @media (max-width: 640px) {
   .health-dashboard .report-grid {
     grid-template-columns: 1fr;
