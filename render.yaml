@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: jeevakosha-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: MONGODB_URI
+        sync: false
+      - key: DB_NAME
+        value: jeevakosha
+      - key: JWT_SECRET
+        sync: false
+      - key: NEBIUS_API_KEY
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
+      - key: HF_INFERENCE_ENDPOINT
+        sync: false
+      - key: HF_API_TOKEN
+        sync: false
+      - key: HF_MODEL
+        value: google/medgemma-1.5-4b-it
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: BACKEND_BASE_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false

@@ -27,3 +27,4 @@ pydantic>=2.8.0
 # Portfolio sharing
 reportlab>=4.2.0
 qrcode[pil]>=7.4.2
+supabase>=2.0.0

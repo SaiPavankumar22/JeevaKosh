@@ -1,7 +1,11 @@
+import os
 from contextlib import asynccontextmanager
 
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+load_dotenv()
 
 from backend.database import create_indexes, create_vector_search_index, purge_orphaned_records
 from backend.routes import documents, hospitals
@@ -13,6 +17,13 @@ from backend.routes import dashboard as dashboard_routes
 from backend.routes import profile as profile_routes
 from backend.routes import ai_diagnosis as ai_diagnosis_routes
 from backend.routes import portfolio as portfolio_routes
+
+
+def _cors_origins() -> list[str]:
+    raw = os.getenv("FRONTEND_URL", "").strip()
+    if not raw:
+        return ["*"]
+    return [origin.strip() for origin in raw.split(",") if origin.strip()]
 
 
 @asynccontextmanager
@@ -36,7 +47,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
