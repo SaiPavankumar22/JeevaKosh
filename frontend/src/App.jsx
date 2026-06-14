@@ -385,9 +385,18 @@ function App() {
     screen === "chat" &&
       h(AppShell, { active: "Chat", logout, navigate, user }, h(Chat, { navigate })),
     screen === "health-dashboard" &&
+<<<<<<< HEAD
       h(AppShell, { active: "Dashboard", logout, navigate, user }, h(HealthDashboard)),
     screen === "profile" &&
       h(AppShell, { active: "Profile", logout, navigate, user }, h(Profile, { user })),
+=======
+      h(AppShell, { active: "Dashboard", logout, navigate, user }, h(HealthDashboard, {
+        navigate,
+        setActiveHospital,
+        setVaultFolder,
+        setSelectedReportFolder,
+      })),
+>>>>>>> cc7f9fd (Initial commmit)
     authMode &&
       h(AuthModal, {
         mode: authMode,
