@@ -19,6 +19,7 @@ hospitals_col = db["hospitals"]
 documents_col = db["documents"]
 report_folders_col = db["report_folders"]   # user-defined sub-folders inside Reports
 profiles_col = db["profiles"]               # patient portfolio (one doc per user)
+portfolios_col = db["portfolio_shares"]     # active portfolio share tokens
 
 
 async def create_indexes() -> None:
@@ -59,6 +60,11 @@ async def create_indexes() -> None:
 
     # ── Patient Profiles ──────────────────────────────────────────────────────
     await profiles_col.create_index("user_id", unique=True)
+
+    # ── Portfolio Shares ──────────────────────────────────────────────────────
+    await portfolios_col.create_index("token", unique=True)
+    await portfolios_col.create_index("user_id")
+    await portfolios_col.create_index("expires_at")
 
 
 async def create_vector_search_index() -> None:

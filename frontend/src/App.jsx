@@ -54,6 +54,7 @@ import Chat from "./pages/Chat.jsx";
 import HealthDashboard from "./pages/HealthDashboard.jsx";
 import Profile from "./pages/Profile.jsx";
 import AiDiagnosis from "./pages/AiDiagnosis.jsx";
+import SharePortfolio from "./pages/SharePortfolio.jsx";
 
 const h = React.createElement;
 const iconProps = { size: 22, strokeWidth: 2.1, "aria-hidden": true };
@@ -225,6 +226,7 @@ const navIcons = {
   Chat: MessageCircle,
   "AI Diagnosis": Stethoscope,
   Profile: UserRound,
+  "Share Portfolio": Share2,
 };
 
 const metricIcons = {
@@ -389,6 +391,8 @@ function App() {
       h(AppShell, { active: "AI Diagnosis", logout, navigate, user }, h(AiDiagnosis)),
     screen === "profile" &&
       h(AppShell, { active: "Profile", logout, navigate, user }, h(Profile, { user })),
+    screen === "share-portfolio" &&
+      h(AppShell, { active: "Share Portfolio", logout, navigate, user }, h(SharePortfolio)),
     authMode &&
       h(AuthModal, {
         mode: authMode,
@@ -494,7 +498,7 @@ function SelectField({ label, name, options }) {
 }
 
 function AppShell({ active, logout, navigate, user, children }) {
-  const items = ["Dashboard", "Medical Repository", "Chat", "AI Diagnosis", "Profile"];
+  const items = ["Dashboard", "Medical Repository", "Chat", "AI Diagnosis", "Profile", "Share Portfolio"];
   return h(
     "div",
     { className: "app-layout" },
@@ -521,6 +525,7 @@ function SideButton({ item, active, navigate }) {
     Chat: "chat",
     "AI Diagnosis": "ai-diagnosis",
     Profile: "profile",
+    "Share Portfolio": "share-portfolio",
   };
   return h("button", { className: active === item ? "active" : "", onClick: () => navigate(routes[item]) }, h(Icon, { icon: navIcons[item] || MessageCircle }), item);
 }

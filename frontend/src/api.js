@@ -169,4 +169,17 @@ export const aiSubmitAnswer = (session_id, question_key, answer) =>
 export const aiAnalyze = (session_id) =>
   api.post("/ai-diagnosis/diagnosis/analyze", { session_id }).then(r => r.data)
 
+// ── Portfolio Sharing ──────────────────────────────────────────────────────────
+export const fetchAllDocuments = () =>
+  api.get("/portfolio/documents/all").then(r => r.data)
+
+export const generatePortfolio = (document_ids, expires_in_hours, title) =>
+  api.post("/portfolio/generate", { document_ids, expires_in_hours, title }).then(r => r.data)
+
+export const fetchMyShares = () =>
+  api.get("/portfolio/my").then(r => r.data)
+
+export const revokeShare = (token) =>
+  api.delete(`/portfolio/${token}`).then(r => r.data)
+
 export default api
