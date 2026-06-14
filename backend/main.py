@@ -11,6 +11,7 @@ from backend.routes import ocr as ocr_routes
 from backend.routes import report_folders as report_folder_routes
 from backend.routes import dashboard as dashboard_routes
 from backend.routes import profile as profile_routes
+from backend.routes import ai_diagnosis as ai_diagnosis_routes
 
 
 @asynccontextmanager
@@ -49,6 +50,7 @@ app.include_router(ocr_routes.router)
 app.include_router(chat_routes.router)
 app.include_router(dashboard_routes.router)
 app.include_router(profile_routes.router)
+app.include_router(ai_diagnosis_routes.router)
 
 
 @app.get("/health", tags=["Health"])

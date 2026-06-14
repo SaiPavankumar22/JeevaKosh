@@ -156,4 +156,17 @@ export const retryOcr = id => api.post(`/documents/${id}/ocr/retry`).then(r => r
 
 export const previewUrl = id => `${BASE_URL}/documents/${id}/preview?token=${getToken() ?? ''}`
 
+// ── AI Diagnosis ───────────────────────────────────────────────────────────────
+export const aiStartSession = (preferred_language) =>
+  api.post("/ai-diagnosis/session/start", { preferred_language }).then(r => r.data)
+
+export const aiTranscribe = (session_id, audio_base64, language, mime_type) =>
+  api.post("/ai-diagnosis/voice/transcribe", { session_id, audio_base64, language, mime_type }).then(r => r.data)
+
+export const aiSubmitAnswer = (session_id, question_key, answer) =>
+  api.post("/ai-diagnosis/voice/answer", { session_id, question_key, answer }).then(r => r.data)
+
+export const aiAnalyze = (session_id) =>
+  api.post("/ai-diagnosis/diagnosis/analyze", { session_id }).then(r => r.data)
+
 export default api
