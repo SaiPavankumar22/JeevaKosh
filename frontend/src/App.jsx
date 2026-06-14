@@ -54,6 +54,7 @@ import ReportFoldersPage from "./pages/ReportFoldersPage.jsx";
 import Documents from "./pages/Documents.jsx";
 import Chat from "./pages/Chat.jsx";
 import HealthDashboard from "./pages/HealthDashboard.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const h = React.createElement;
 const iconProps = { size: 22, strokeWidth: 2.1, "aria-hidden": true };
@@ -223,6 +224,7 @@ const navIcons = {
   Home,
   Patients: Users,
   Hospitals: Hospital,
+  Profile: UserRound,
   Dashboard: LayoutDashboard,
   Chat: MessageCircle,
 };
@@ -384,6 +386,8 @@ function App() {
       h(AppShell, { active: "Chat", logout, navigate, user }, h(Chat, { navigate })),
     screen === "health-dashboard" &&
       h(AppShell, { active: "Dashboard", logout, navigate, user }, h(HealthDashboard)),
+    screen === "profile" &&
+      h(AppShell, { active: "Profile", logout, navigate, user }, h(Profile, { user })),
     authMode &&
       h(AuthModal, {
         mode: authMode,
@@ -489,7 +493,7 @@ function SelectField({ label, name, options }) {
 }
 
 function AppShell({ active, logout, navigate, user, children }) {
-  const items = ["Home", "Patients", "Hospitals", "Chat", "Dashboard"];
+  const items = ["Home", "Patients", "Hospitals", "Profile", "Chat", "Dashboard"];
   return h(
     "div",
     { className: "app-layout" },
@@ -510,7 +514,7 @@ function AppShell({ active, logout, navigate, user, children }) {
 }
 
 function SideButton({ item, active, navigate }) {
-  const routes = { Home: "dashboard", Patients: "patients", Hospitals: "hospitals", Chat: "chat", Dashboard: "health-dashboard" };
+  const routes = { Home: "dashboard", Patients: "patients", Hospitals: "hospitals", Profile: "profile", Chat: "chat", Dashboard: "health-dashboard" };
   return h("button", { className: active === item ? "active" : "", onClick: () => navigate(routes[item]) }, h(Icon, { icon: navIcons[item] || MessageCircle }), item);
 }
 

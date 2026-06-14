@@ -2427,3 +2427,65 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Patient Profile ─────────────────────────────────────────────────────── */
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.profile-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-actions.bottom {
+  margin-top: 8px;
+}
+
+.profile-section {
+  padding: 22px;
+}
+
+.profile-section .section-head h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 0;
+}
+
+.profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-list-item {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.remove-row-btn {
+  margin-top: 12px;
+  border: none;
+  background: transparent;
+  color: var(--coral);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.remove-row-btn:hover {
+  text-decoration: underline;
+}
+
+.profile-list-item .form-grid {
+  margin-bottom: 0;
+}
