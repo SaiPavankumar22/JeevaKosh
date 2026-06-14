@@ -10,8 +10,23 @@ DB_NAME: str = os.getenv("DB_NAME", "jeevakosha")
 client = AsyncIOMotorClient(MONGO_URI)
 db = client[DB_NAME]
 
+
+class _LazyGridFSBucket:
+    """Defer GridFS bucket creation until first use inside a running event loop."""
+
+    _instance: AsyncIOMotorGridFSBucket | None = None
+
+    def _get(self) -> AsyncIOMotorGridFSBucket:
+        if self._instance is None:
+            self._instance = AsyncIOMotorGridFSBucket(db, bucket_name="medical_files")
+        return self._instance
+
+    def __getattr__(self, name: str):
+        return getattr(self._get(), name)
+
+
 # GridFS bucket — stores raw file binaries (images / PDFs)
-fs_bucket = AsyncIOMotorGridFSBucket(db, bucket_name="medical_files")
+fs_bucket = _LazyGridFSBucket()
 
 # Collections
 users_col = db["users"]
