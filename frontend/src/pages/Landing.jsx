@@ -2,6 +2,7 @@ import React from "react";
 import Brand from "../components/Brand.jsx";
 import Button from "../components/Button.jsx";
 import Icon, { IconBadge, HeartPulse } from "../components/Icon.jsx";
+import { PROJECT_DISCLAIMER } from "../constants/terms.js";
 import { ClipboardList, CalendarCheck, FileText, Microscope, Siren } from "lucide-react";
 
 function Metric({ value, label, icon }) {
@@ -171,6 +172,7 @@ export default function Landing({ slide, setSlide, openAuth, visitorCards, featu
         <footer className="landing-footer">
           <Brand light />
           <p>Jeevakosh keeps patient records, appointments, hospitals, reports, bills, and family care context together.</p>
+          <p className="landing-disclaimer">{PROJECT_DISCLAIMER}</p>
           <div>{['Online Services','Reports','Doctors','Appointments','Privacy'].map(item => <span key={item}>{item}</span>)}</div>
         </footer>
       </main>

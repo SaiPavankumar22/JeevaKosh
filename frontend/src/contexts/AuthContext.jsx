@@ -30,8 +30,8 @@ export function AuthProvider({ children }) {
     setUser(u)
   }, [])
 
-  const signup = useCallback(async (name, email, password) => {
-    const { access_token, user: u } = await authRegister(name, email, password)
+  const signup = useCallback(async (name, email, password, acceptedTerms) => {
+    const { access_token, user: u } = await authRegister(name, email, password, acceptedTerms)
     setToken(access_token)
     setUser(u)
   }, [])

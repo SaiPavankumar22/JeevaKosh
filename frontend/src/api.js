@@ -39,8 +39,13 @@ api.interceptors.response.use(
   },
 )
 
-export const authRegister = (name, email, password) =>
-  api.post('/auth/register', { name, email, password }).then(r => r.data)
+export const authRegister = (name, email, password, acceptedTerms = false) =>
+  api.post('/auth/register', {
+    name,
+    email,
+    password,
+    accepted_terms: acceptedTerms,
+  }).then(r => r.data)
 
 export const authLogin = (email, password) =>
   api.post('/auth/login', { email, password }).then(r => r.data)

@@ -1546,6 +1546,96 @@ h3 {
   margin-bottom: 22px;
 }
 
+.terms-panel {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.terms-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.terms-check-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.terms-toggle {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--teal);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.terms-toggle:hover {
+  color: #0f5f4f;
+}
+
+.terms-body {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.terms-title {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+
+.terms-intro {
+  margin: 0 0 12px;
+  font-size: 0.88rem;
+}
+
+.terms-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  max-height: 200px;
+  overflow: auto;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.terms-list li + li {
+  margin-top: 8px;
+}
+
+.terms-disclaimer,
+.landing-disclaimer,
+.app-disclaimer {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.app-disclaimer {
+  margin: 0;
+  padding: 12px 18px 18px;
+  border-top: 1px solid var(--line);
+  background: #f8fafb;
+}
+
+.landing-disclaimer {
+  max-width: 720px;
+}
+
 .icon-btn {
   width: 40px;
   height: 40px;
@@ -1593,6 +1683,16 @@ select:focus,
 textarea:focus {
   border-color: var(--teal);
   box-shadow: 0 0 0 4px rgba(22, 125, 104, 0.12);
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  padding: 0;
+  flex-shrink: 0;
+  accent-color: var(--teal);
+  cursor: pointer;
 }
 
 textarea {

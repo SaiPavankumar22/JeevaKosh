@@ -55,6 +55,7 @@ import HealthDashboard from "./pages/HealthDashboard.jsx";
 import Profile from "./pages/Profile.jsx";
 import AiDiagnosis from "./pages/AiDiagnosis.jsx";
 import SharePortfolio from "./pages/SharePortfolio.jsx";
+import { PROJECT_DISCLAIMER, TERMS_AND_CONDITIONS } from "./constants/terms.js";
 
 const h = React.createElement;
 const iconProps = { size: 22, strokeWidth: 2.1, "aria-hidden": true };
@@ -427,7 +428,11 @@ function AuthModal({ mode, login, signup, onClose, onComplete }) {
           setError("Please complete name, email, and password.");
           return;
         }
-        await signup(name, values.email, values.password);
+        if (!values.acceptedTerms) {
+          setError("Please read and accept the Terms & Conditions to create an account.");
+          return;
+        }
+        await signup(name, values.email, values.password, true);
       } else {
         if (!values.email || !values.password) {
           setError("Please enter email and password.");
@@ -462,6 +467,7 @@ function AuthModal({ mode, login, signup, onClose, onComplete }) {
         isSignup && h(SignupFields),
         !isSignup && h(Field, { label: "Email", name: "email", type: "email", placeholder: "you@example.com" }),
         h(Field, { label: "Password", name: "password", type: "password", placeholder: "••••••••" }),
+        isSignup && h(TermsAcceptance),
         h("p", { className: "error" }, error),
         h(Button, { type: "submit", disabled: submitting }, submitting ? "Please wait…" : isSignup ? "Create account" : "Sign in")
       )
@@ -476,6 +482,52 @@ function SignupFields() {
     h(Field, { label: "First name", name: "firstName" }),
     h(Field, { label: "Last name", name: "lastName" }),
     h(Field, { label: "Email ID", name: "email", type: "email" })
+  );
+}
+
+function TermsAcceptance() {
+  const [showTerms, setShowTerms] = useState(false);
+
+  return h(
+    "div",
+    { className: "terms-panel" },
+    h(
+      "label",
+      { className: "terms-check" },
+      h("input", { type: "checkbox", name: "acceptedTerms", value: "yes" }),
+      h(
+        "span",
+        { className: "terms-check-label" },
+        "I have read and agree to the Terms & Conditions."
+      )
+    ),
+    h(
+      "button",
+      {
+        type: "button",
+        className: "terms-toggle",
+        onClick: () => setShowTerms((open) => !open),
+        "aria-expanded": showTerms,
+      },
+      showTerms ? "Hide terms" : "Read Terms & Conditions"
+    ),
+    showTerms &&
+      h(
+        "div",
+        { className: "terms-body" },
+        h("h3", { className: "terms-title" }, "JeevaKosh Terms & Conditions"),
+        h(
+          "p",
+          { className: "terms-intro muted" },
+          "By creating an account and using JeevaKosh, you agree to the following terms:"
+        ),
+        h(
+          "ol",
+          { className: "terms-list" },
+          TERMS_AND_CONDITIONS.map((term) => h("li", { key: term }, term))
+        )
+      ),
+    h("p", { className: "terms-disclaimer" }, PROJECT_DISCLAIMER)
   );
 }
 
@@ -514,7 +566,8 @@ function AppShell({ active, logout, navigate, user, children }) {
         h("button", { onClick: logout }, h(LogOut, iconProps), "Logout")
       )
     ),
-    h("main", { className: "main" }, children)
+    h("main", { className: "main" }, children),
+    h("footer", { className: "app-disclaimer" }, PROJECT_DISCLAIMER)
   );
 }
 

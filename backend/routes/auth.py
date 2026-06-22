@@ -36,6 +36,8 @@ async def register(data: UserRegister):
         "email": data.email.lower(),
         "password_hash": hash_password(data.password),
         "created_at": datetime.now(timezone.utc),
+        "terms_accepted_at": datetime.now(timezone.utc),
+        "terms_version": "2026-06-14",
     }
     result = await users_col.insert_one(doc)
     user_id = str(result.inserted_id)

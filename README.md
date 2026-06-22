@@ -2,6 +2,8 @@
 
 **JeevaKosha** (जीवकोश — *life repository*) is a secure personal medical repository and health intelligence platform. It lets users store clinical documents, extract structured lab data via OCR, chat with an AI assistant over their own records, track health trends, and run a voice-based AI symptom assessment — all scoped to the authenticated user.
 
+> **Project disclaimer:** JeevaKosha is a personal portfolio / educational project. It is **not** a licensed healthcare provider, certified medical device, or regulated health information system. Do not use it for emergency care or as a substitute for professional medical advice. If you upload real medical data, you do so at your own risk and are responsible for compliance with applicable privacy and healthcare laws in your jurisdiction. See [Terms & Conditions](#terms--conditions) below.
+
 ---
 
 ## Overview
@@ -44,14 +46,7 @@ Healthcare generates vast amounts of data: lab reports, prescriptions, imaging s
 | **Orphan cleanup** | Startup purge of records without a valid owner |
 | **No secrets in repo** | Environment variables for all API keys and credentials |
 | **Medical disclaimers** | Chat and AI Diagnosis include doctor-consultation warnings |
-
-### Planned / roadmap
-
-- FHIR-compatible APIs for interoperability
-- Persistent AI Diagnosis session history in MongoDB
-- Patient portal sharing with clinicians
-- Audit logging for sensitive actions
-- Additional OCR report types beyond Blood Test and Diabetes
+| **Terms at signup** | Users must accept Terms & Conditions before account creation |
 
 ---
 
@@ -171,6 +166,7 @@ AI Diagnosis sessions are stored **in memory** (not persisted) and are cleared o
 ```
 JeevaKosha/
 ├── README.md
+├── LICENSE                   # MIT License
 ├── requirements.txt          # Python backend dependencies
 ├── .env                      # Environment variables (not committed)
 ├── .env.example
@@ -386,10 +382,27 @@ JeevaKosha is designed with healthcare data protection in mind:
 - **Least privilege** — users access only their own hospitals, documents, and profile
 - **JWT on protected routes** — unauthenticated requests receive `401`
 - **No secrets in repo** — use `.env` and secret managers in production
-- **Compliance readiness** — structure supports alignment with applicable regulations; formal compliance requires legal review and operational controls
+- **Educational project** — not HIPAA-, GDPR-, or clinical-compliance certified; formal production use requires legal review and operational controls
 - **AI disclaimers** — Chat and AI Diagnosis outputs are preliminary and not a substitute for professional medical care
+- **Terms acceptance** — registration requires explicit agreement to the platform Terms & Conditions
 
 **Do not commit** `.env` files, credentials, or real patient data.
+
+---
+
+## Terms & Conditions
+
+By creating an account and using JeevaKosha, users agree to the following:
+
+1. JeevaKosha is a personal medical record management platform that allows users to store, organize, and access medical documents such as prescriptions, laboratory reports, discharge summaries, and other healthcare records.
+2. Users are responsible for ensuring that the information uploaded to the platform is accurate and legally obtained.
+3. JeevaKosha does not provide medical advice, diagnosis, treatment recommendations, or emergency healthcare services.
+4. Dashboard visualizations, trends, summaries, and AI-generated insights are provided for informational purposes only and must not be considered medical advice.
+5. Users remain the owners of their uploaded documents and may delete their records at any time.
+6. Users may share selected records through QR codes or secure sharing links. Users are responsible for controlling access to shared records.
+7. JeevaKosha reserves the right to suspend accounts involved in misuse, unauthorized access attempts, malicious activity, or violation of applicable laws.
+8. JeevaKosha may update these terms from time to time. Continued use of the platform constitutes acceptance of any updated terms.
+9. To the maximum extent permitted by law, JeevaKosha shall not be liable for any loss, injury, medical decision, or damages arising from the use of information displayed within the platform.
 
 ---
 
@@ -404,26 +417,11 @@ Please avoid including PHI (protected health information) in issues, PRs, or tes
 
 ---
 
-## Roadmap
-
-- [x] Authentication and user-scoped data
-- [x] Hospital / document repository with GridFS
-- [x] OCR for Blood Test and Diabetes reports
-- [x] Health dashboard with charts
-- [x] RAG chatbot with vector search
-- [x] Patient profile (view / edit)
-- [x] AI Diagnosis voice interview + MedGemma analysis
-- [ ] Persistent AI Diagnosis history
-- [ ] Additional OCR report types
-- [ ] Audit logging
-- [ ] OpenAPI export / client SDK
-- [ ] FHIR interoperability
-
----
-
 ## License
 
-TBD — add your chosen license (e.g. MIT, Apache 2.0, or proprietary).
+This project is licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2026 SaiPavankumar22
 
 ---
 
